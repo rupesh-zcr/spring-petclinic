@@ -10,10 +10,19 @@ pipeline{
         stage('Build Docker Image') {
             steps {
                 script {
-                  sh 'docker build -t java-docker/my-app-2.0 .'
+                  sh 'docker build -t fleetapp .'
                 }
             }
         }
-        
+        stage('Deploy Docker Image') {
+            steps {
+                script {
+                    aws ecr get-login-password --region ap-southeast-1 | docker login --username AWS --password-stdin 470447642752.dkr.ecr.ap-southeast-1.amazonaws.com
+                    sh 'docker tag fleetapp:latest 470447642752.dkr.ecr.ap-southeast-1.amazonaws.com/fleetapp:latest'
+                 }  
+                 sh 'docker push 470447642752.dkr.ecr.ap-southeast-1.amazonaws.com/fleetapp:latest'
+                }
+            }
+        }
     }
 }
