@@ -14,15 +14,6 @@ pipeline{
                 }
             }
         }
-        stage('Deploy Docker Image') {
-            steps {
-                script {
-                    withCredentials([string(credentialsId: 'dockerhubpass', variable: 'Password')])   {
-                    sh 'docker login -u ankush8421 -p ${Password}'
-                 }  
-                 sh 'docker push java-docker/my-app-2.0'
-                }
-            }
-        }
+        
     }
 }
