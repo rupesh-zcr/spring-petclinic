@@ -34,7 +34,7 @@ pipeline{
             steps {
                  sh ''' 
                    aws eks update-kubeconfig --name $CLUSTER_NAME --region ap-south-1
-                   kubectl get ns
+                   kubectl config use-context $EKS_CLUSTER_CURRENT_CONTEXT_NAME
                    '''
             }
         }
