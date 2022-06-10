@@ -2,6 +2,7 @@ pipeline{
     
     environment {
         CLUSTER_NAME="non-prd-eks1"
+        EKS_CLUSTER_CURRENT_CONTEXT_NAME="arn:aws:eks:ap-south-1:992022947233:cluster/${CLUSTER_NAME}"
         NAMESPACE="test"
         
     }
