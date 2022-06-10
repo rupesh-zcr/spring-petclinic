@@ -1,6 +1,12 @@
 pipeline{
-    agent any
     
+    environment {
+        CLUSTER_NAME="non-prd-eks1"
+        NAMESPACE="test"
+        
+    }
+        
+    agent any
     stages {
         stage('Build Maven') {
             steps{
@@ -25,7 +31,10 @@ pipeline{
         } 
         stage('Deploy'){
             steps {
-                 sh 'kubectl apply -f Deployment.yml'
+                 sh ''' 
+                   aws eks update-kubeconfig --name $CLUSTER_NAME --region ap-south-1
+                   kubectl apply -f Deployment.yml -n $NAMESPACE
+                   '''
             }
         }
         
