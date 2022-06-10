@@ -10,16 +10,16 @@ pipeline{
         stage('Build Docker Image') {
             steps {
                 script {
-                  sh 'docker build -t fleetapp .'
+                  sh 'docker build -t demo/test . .'
                 }
             }
         }
         stage('Push Docker Image') {
             steps {
                 script {
-                    echo 'aws ecr get-login-password --region ap-southeast-1 | docker login --username AWS --password-stdin 470447642752.dkr.ecr.ap-southeast-1.amazonaws.com'
-                    sh 'docker tag fleetapp:latest 470447642752.dkr.ecr.ap-southeast-1.amazonaws.com/fleetapp:latest'
-                    sh 'docker push 470447642752.dkr.ecr.ap-southeast-1.amazonaws.com/fleetapp:latest'
+                    echo 'aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 992022947233.dkr.ecr.ap-south-1.amazonaws.com'
+                    sh 'docker tag demo/test:latest 992022947233.dkr.ecr.ap-south-1.amazonaws.com/demo/test:latest'
+                    sh 'docker push 992022947233.dkr.ecr.ap-south-1.amazonaws.com/demo/test:latest'
                 }
             }
         }
