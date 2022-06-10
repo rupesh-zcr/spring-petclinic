@@ -33,7 +33,7 @@ pipeline{
             steps {
                  sh ''' 
                    aws eks update-kubeconfig --name $CLUSTER_NAME --region ap-south-1
-                   kubectl apply -f Deployment.yml -n $NAMESPACE
+                   kubectl get ns
                    '''
             }
         }
