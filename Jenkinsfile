@@ -22,6 +22,12 @@ pipeline{
                     sh 'docker push 992022947233.dkr.ecr.ap-south-1.amazonaws.com/demo/test:latest'
                 }
             }
+        } 
+        stage('Deploy'){
+            steps {
+                 sh 'kubectl apply -f deployment.yml'
+            }
         }
+        
     }
 }
