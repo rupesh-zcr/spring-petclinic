@@ -38,7 +38,7 @@ pipeline{
                    export AWS_PROFILE=ecr-jenkins
                    aws eks update-kubeconfig --name $CLUSTER_NAME --region ap-south-1
                    kubectl config use-context $EKS_CLUSTER_CURRENT_CONTEXT_NAME
-                   kubectl get ns
+                   kubectl apply -f Deployment.yaml -n $NAMESPACE 
                    '''
             }
         }
