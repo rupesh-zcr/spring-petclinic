@@ -10,6 +10,7 @@ pipeline{
     stages {
         stage('Build Maven') {
             steps{
+                sh 'rm -r spring-petclinic'
                sh 'git clone https://github.com/rupesh-zcr/spring-petclinic.git'           
             }
         }
