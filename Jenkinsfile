@@ -4,7 +4,7 @@ pipeline{
     stages {
         stage('Build Maven') {
             steps{
-               checkout([$class: 'GitSCM', branches: [[name: '*/main']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'githubpwd', url: 'https://github.com/rupesh-zcr/spring-petclinic.git']]])           
+               sh 'git clone https://github.com/rupesh-zcr/spring-petclinic.git'           
             }
         }
         stage('Build Docker Image') {
